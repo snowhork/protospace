@@ -22,7 +22,6 @@
 * user_id
 
 ## likes
-* like_flag
 * prototype_id
 * user_id
 
