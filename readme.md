@@ -14,6 +14,7 @@
 * catch_copy
 * concept
 * user_id
+* comments_count
 
 ## comments
 * text
