@@ -16,7 +16,7 @@
 * user_id
 
 ## comments
-* comment
+* text
 * prototype_id
 * user_id
 
@@ -26,5 +26,5 @@
 * user_id
 
 ## images
-* image
+* substance
 * prototype_id
