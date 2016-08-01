@@ -8,13 +8,13 @@
 * member
 * profile
 * works
-* comment_id
 
 ## prototypes
 * catch_copy
 * concept
 * user_id
 * comments_count
+* likes_count
 
 ## comments
 * text
