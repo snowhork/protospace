@@ -8,13 +8,13 @@
 * member
 * profile
 * works
-* comment_id
 
 ## prototypes
 * catch_copy
 * concept
 * user_id
 * comments_count
+* likes_count
 
 ## comments
 * text
@@ -28,3 +28,16 @@
 ## images
 * substance
 * prototype_id
+
+# コーディング規則
+
+## クォーテーションの使い方
+式展開やバックスラッシュ記法など特別な時のみダブルクォーテーション。その他通常時はシングルクォーテーション。
+
+```
+# bad
+x = "Hello World!"
+
+# good
+x = 'Hello World!'
+```
