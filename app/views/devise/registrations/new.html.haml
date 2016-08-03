@@ -1,0 +1,36 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .container.user-new
+    .col-md-8.col-md-offset-2
+      = devise_error_messages!
+      %header.row.user-nav.row
+        .col-md-12
+          %h2 Register
+          .user-name_image.row
+            .user-name.col-md-10
+              = f.label :nickname
+              = f.text_field :nickname, autofocus: true, placeholder: 'Username'
+            .user-image.col-md-2
+              %button.btn.btn-primary Add image
+              %input{type: "file"}/
+          / %input.user-email{type: "email", placeholder: "E-Mail"}/
+          = f.label :email
+          = f.email_field :email, autofocus: true, placeholder: 'Email address', class: 'user-email'
+          = f.label :password
+          = f.password_field :password, autocomplete: 'off', placeholder: 'Password', class: 'Password'
+        .col-md-12
+          .user-user-member.row
+            .user-name.col-md-12
+              = f.label :member
+              = f.text_field :member, placeholder: 'Member'
+          .user-user-profile.row
+            .user-name.col-md-12
+              = f.label :profile
+              = f.text_field :profile, placeholder: 'Profile'
+              / %textarea{name: "textarea", cols: "30", rows: "4", placeholder: "Profile"}
+          .user-name_image.row
+            .user-name.col-md-12
+              = f.label :works
+              = f.text_field :works, placeholder: 'Works'
+              / %textarea{name: "textarea", cols: "30", rows: "4", placeholder: "Works"}
+      .row.text-center.user-btn
+        = f.submit 'Save', class: 'btn btn-lg btn-primary btn-block'
