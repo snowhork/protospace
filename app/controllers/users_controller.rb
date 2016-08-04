@@ -7,8 +7,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
-    current_user.update(user_params)
+    if params.require(:user)[:password] == ""
+      current_user.update_without_password(user_params)
+    else
+      current_user.update(user_params)
+      sign_in(current_user, bypass: true)
+    end
     redirect_to root_path
   end
 
