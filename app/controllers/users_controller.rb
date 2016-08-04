@@ -5,14 +5,4 @@ class UsersController < ApplicationController
 
   def edit
   end
-
-  def update
-    User.create(user_params)
-    redirect_to root_path
-  end
-
-  private
-  def user_params
-    params.require(:user).permit([:email, :password, :member, :profile, :works])
-  end
 end
