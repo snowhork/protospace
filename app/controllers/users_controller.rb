@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params.require(:user)[:password] == ""
+    if user_params[:password].blank?
       current_user.update_without_password(user_params)
     else
       current_user.update(user_params)
