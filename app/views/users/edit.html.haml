@@ -6,12 +6,12 @@
           %h2 Edit Profile
           .user-name_image.row
             .user-name.col-md-10
-              %input{type: "text", placeholder: "Username", value: "TECH::MASTER"}/
+              = f.email_field :nickname, autofocus: true
             .user-image.col-md-2{:style => 'background-image: url(http://泣ける動画.com/wp-content/uploads/2015/01/t0205-01.jpg);'}
               %button.btn.btn-primary Change image
               %input{type: "file"}/
           %h4 E-mail
-          = f.email_field :email, autofocus: true, class: 'user-email'
+          = f.email_field :email, class: 'user-email'
           %h4 Password
           = f.password_field :password, class: 'user-password'
         .col-md-12
@@ -28,4 +28,4 @@
             .user-name.col-md-12
               = f.text_field :works
       .row.text-center.user-btn
-        %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Save
+        = f.submit 'Save', class: 'btn btn-lg btn-primary btn-block'
