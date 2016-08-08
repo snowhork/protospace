@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       current_user.update(user_params)
       sign_in(current_user, bypass: true)
     end
-    redirect_to root_path
+    redirect_to root_path, success: 'Edit your profile successfully'
   end
 
   private
