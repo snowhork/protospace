@@ -6,6 +6,9 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new
   end
 
+  def create
+  end
+
   def show
   end
 end
