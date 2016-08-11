@@ -10,6 +10,12 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
 
+    if prototype_params[:images_attributes] &&
+       !prototype_params[:images_attributes]["0"]
+      flash[:danger] = 'You have to upload main image if you want to upload some images'
+      render action: 'new'
+      return
+    end
     if @prototype.save
       redirect_to root_path, success: 'Upload your prototype successfully'
     else
