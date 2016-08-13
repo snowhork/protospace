@@ -8,17 +8,12 @@ class PrototypesController < ApplicationController
   end
 
   def create
+    add_main_flag
     @prototype = Prototype.new(prototype_params)
-
-    if prototype_params[:images_attributes] &&
-       !prototype_params[:images_attributes]["0"]
-      flash[:danger] = 'You have to upload main image if you want to upload some images'
-      render action: 'new'
-      return
-    end
     if @prototype.save
       redirect_to root_path, success: 'Upload your prototype successfully'
     else
+      flash.now[:danger] = @prototype.errors.full_messages[0]
       render action: 'new'
     end
   end
@@ -33,7 +28,18 @@ class PrototypesController < ApplicationController
           .permit(:title,
                   :catch_copy,
                   :concept,
-                  images_attributes: [:substance])
+                  images_attributes: [:substance, :main_flag])
           .merge(user_id: current_user.id)
   end
+
+  def add_main_flag
+    params.require(:prototype)[:images_attributes].each{ |key, value|
+      if key == '0'
+        value.merge!(main_flag: true)
+      else
+        value.merge!(main_flag: false)
+      end
+    } if params.require(:prototype)[:images_attributes].present?
+  end
+
 end
