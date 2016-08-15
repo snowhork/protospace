@@ -13,6 +13,14 @@ class Prototype < ActiveRecord::Base
     end
   end
 
+  def sub_images
+    subs = []
+    images.each do |image|
+      subs << image unless image.main_flag
+    end
+    return subs
+  end
+
   def display_date
     created_at.strftime("%b %d")
   end
