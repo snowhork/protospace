@@ -1,7 +1,7 @@
 class Prototype < ActiveRecord::Base
   has_many :images
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 
   accepts_nested_attributes_for :images
 
