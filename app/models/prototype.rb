@@ -13,6 +13,10 @@ class Prototype < ActiveRecord::Base
     end
   end
 
+  def display_date
+    created_at.strftime("%b %d")
+  end
+
   private
 
   def prototype_must_have_main_image_to_upload_some_images
