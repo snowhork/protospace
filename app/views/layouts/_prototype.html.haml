@@ -1,10 +1,13 @@
 .col-sm-4.col-md-3.proto-content
-  .dropdown.drop_menu_location
-    = button_tag class: 'btn btn-default dropdown-toggle', type: 'button', :'data-toggle' => 'dropdown', :'aria-expanded' => 'false' do
-      ACTION
-    %ul{class: 'dropdown-menu', role: 'menu'}
-      %li{role: 'presentation'}
-        = link_to 'edit', ""
+  - if user_signed_in? && prototype.user.id == current_user.id
+    .dropdown.drop_menu_location
+      = button_tag class: 'btn btn-default dropdown-toggle', type: 'button', :'data-toggle' => 'dropdown', :'aria-expanded' => 'false' do
+        ACTION
+      %ul{class: 'dropdown-menu', role: 'menu'}
+        %li{role: 'presentation'}
+          = link_to 'edit', edit_prototype_path(prototype)
+        %li{role: 'presentation'}
+          = link_to 'delete', prototype_path(prototype), method: :delete
   .thumbnail
     = link_to prototype_path(prototype) do
       = image_tag prototype.main_image.substance
