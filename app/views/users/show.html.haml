@@ -22,6 +22,6 @@
             = simple_format @user.works
 .container.proto-list
   .row
-    = render partial: "layouts/prototype", collection: @prototypes
+    = render partial: "prototypes/prototype", collection: @prototypes
 .text-center
   = paginate(@prototypes)
