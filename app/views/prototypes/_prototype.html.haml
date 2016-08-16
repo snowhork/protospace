@@ -14,13 +14,14 @@
       .caption
         %h3
           = prototype.title
-        .proto-meta
-          .proto-user
-            = link_to "by #{prototype.nickname}", user_path(prototype.user)
-          .proto-posted
-            = prototype.display_date
-        %ul.proto-tag-list.list-inline
-          %li
-            %a{href: "#", class: "btn btn-default"} iPad
-          %li
-            %a{href: "#", class: "btn btn-default"} wireframe
+    .proto-meta
+      .proto-user
+        by
+        = link_to "#{prototype.nickname}", user_path(prototype.user)
+      .proto-posted
+        = prototype.display_date
+    %ul.proto-tag-list.list-inline
+      %li
+        %a{href: "#", class: "btn btn-default"} iPad
+      %li
+        %a{href: "#", class: "btn btn-default"} wireframe
