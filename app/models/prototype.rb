@@ -3,22 +3,18 @@ class Prototype < ActiveRecord::Base
 
   belongs_to :user, counter_cache: true
 
+  delegate :nickname, to: :user
+
   accepts_nested_attributes_for :images
 
   validate :prototype_must_have_main_image_to_upload_some_images, on: :create
 
   def main_image
-    images.each do |image|
-      return image if image.main_flag
-    end
+    images.select {|image| image.main_flag }[0]
   end
 
   def sub_images
-    subs = []
-    images.each do |image|
-      subs << image unless image.main_flag
-    end
-    return subs
+    images.select {|image| !image.main_flag }
   end
 
   def display_date
