@@ -1,5 +1,5 @@
 .col-sm-4.col-md-3.proto-content
-  - if user_signed_in? && prototype.user.id == current_user.id
+  - if is_instance_current_users?(prototype)
     .dropdown.drop_menu_location
       = button_tag class: 'btn btn-default dropdown-toggle', type: 'button', :'data-toggle' => 'dropdown', :'aria-expanded' => 'false' do
         ACTION
