@@ -10,7 +10,6 @@
             = f.fields_for :images, @main_image do |images_form|
               = images_form.file_field :substance
               = image_tag @prototype.images[0].substance, id: 'main_preview'
-              / = images_form.hidden_field :substance_cache
         .col-md-12
           %ul.proto-sub-list.list-group
             %li.list-group-item.col-md-4
