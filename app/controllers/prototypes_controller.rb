@@ -11,7 +11,6 @@ class PrototypesController < ApplicationController
   def create
     add_main_flag
     @prototype = Prototype.new(prototype_params)
-    @prototype
     if @prototype.save
       redirect_to root_path, success: 'Upload your prototype successfully'
     else
