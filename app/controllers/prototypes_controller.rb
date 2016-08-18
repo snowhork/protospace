@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:show, :edit, :update]
+
   def index
     @prototypes = Prototype.all.includes(:user).page(params[:page])
   end
@@ -20,18 +22,15 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
     (3 - @prototype.images.length).times { @prototype.images.build }
     @main_image = @prototype.images[0]
   end
 
   def update
     add_main_flag
-    @prototype = Prototype.find(params[:id])
     if @prototype.update(prototype_params)
       redirect_to root_path, success: 'Edit your prototype successfully'
     else
@@ -71,4 +70,7 @@ class PrototypesController < ApplicationController
     } if params.require(:prototype)[:images_attributes].present?
   end
 
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
 end
