@@ -1,3 +1,5 @@
+include UsersHelper
+
 class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show, :edit, :update]
 
@@ -31,7 +33,7 @@ class PrototypesController < ApplicationController
 
   def update
     add_main_flag
-    if @prototype.update(prototype_params)
+    if is_instance_current_users?(@prototype) && @prototype.update(prototype_params)
       redirect_to root_path, success: 'Edit your prototype successfully'
     else
       flash.now[:danger] = @prototype.errors.full_messages[0]
@@ -41,7 +43,7 @@ class PrototypesController < ApplicationController
 
   def destroy
     @prototype = Prototype.find(params[:id])
-    if @prototype.user.id == current_user.id && @prototype.destroy
+    if is_instance_current_users?(@prototype) && @prototype.destroy
       redirect_to root_path, success: 'Delete your prototype successfully'
     else
       redirect_to root_path
