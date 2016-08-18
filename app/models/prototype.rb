@@ -3,7 +3,7 @@ class Prototype < ActiveRecord::Base
 
   belongs_to :user, counter_cache: true
 
-  delegate :nickname, to: :user
+  delegate :nickname, :works, to: :user
 
   accepts_nested_attributes_for :images, reject_if: :all_blank
 

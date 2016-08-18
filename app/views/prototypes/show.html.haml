@@ -9,9 +9,10 @@
           %h4#top-aligned-media.media-heading
             = @prototype.title
           .proto-user
-            = link_to "by #{@prototype.user.nickname}", user_path(@prototype.user)
+            by
+            = link_to @prototype.nickname, user_path(@prototype.user)
             %span.degree
-              = @prototype.user.works
+              = @prototype.works
     .col-md-6.text-right
       %button.btn.btn-default
         = image_tag "icon_heart.svg"
