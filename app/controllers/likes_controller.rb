@@ -5,6 +5,12 @@ class LikesController < ApplicationController
     @prototype = Prototype.find(params[:prototype_id])
   end
 
+  def destroy
+    @like = Like.find(params[:id])
+    @like.destroy
+    @prototype = Prototype.find(params[:prototype_id])
+  end
+
   private
 
   def like_params
