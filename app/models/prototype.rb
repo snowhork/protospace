@@ -1,9 +1,29 @@
 class Prototype < ActiveRecord::Base
-  has_many :images
+  has_many :images, dependent: :destroy
 
-  accepts_nested_attributes_for :images
+  belongs_to :user, counter_cache: true
 
-  validate :prototype_must_have_main_image_to_upload_some_images, on: :create
+  delegate :nickname, :works, to: :user
+
+  accepts_nested_attributes_for :images, reject_if: :all_blank
+
+  validate :prototype_must_have_main_image_to_upload_some_images, on: [:create, :update]
+
+  paginates_per 8
+
+  def main_image
+    images.select {|image| image.main_flag }[0]
+  end
+
+  def sub_images
+    images.select {|image| !image.main_flag }
+  end
+
+  def display_date
+    created_at.strftime("%b %d")
+  end
+
+  private
 
   def prototype_must_have_main_image_to_upload_some_images
     if images.present?

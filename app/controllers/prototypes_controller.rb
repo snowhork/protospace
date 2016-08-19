@@ -1,5 +1,10 @@
 class PrototypesController < ApplicationController
+  include UsersHelper
+
+  before_action :set_prototype, only: [:show, :edit, :update, :destroy]
+
   def index
+    @prototypes = Prototype.all.includes(:user).page(params[:page])
   end
 
   def new
@@ -21,6 +26,29 @@ class PrototypesController < ApplicationController
   def show
   end
 
+  def edit
+    (3 - @prototype.images.length).times { @prototype.images.build }
+    @main_image = @prototype.images[0]
+  end
+
+  def update
+    add_main_flag
+    if is_instance_current_users?(@prototype) && @prototype.update(prototype_params)
+      redirect_to root_path, success: 'Edit your prototype successfully'
+    else
+      flash.now[:danger] = @prototype.errors.full_messages[0]
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    if is_instance_current_users?(@prototype) && @prototype.destroy
+      redirect_to root_path, success: 'Delete your prototype successfully'
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def prototype_params
@@ -28,7 +56,7 @@ class PrototypesController < ApplicationController
           .permit(:title,
                   :catch_copy,
                   :concept,
-                  images_attributes: [:substance, :main_flag])
+                  images_attributes: [:substance, :main_flag, :id])
           .merge(user_id: current_user.id)
   end
 
@@ -42,4 +70,7 @@ class PrototypesController < ApplicationController
     } if params.require(:prototype)[:images_attributes].present?
   end
 
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
+  end
 end

@@ -1,0 +1,27 @@
+.col-sm-4.col-md-3.proto-content
+  - if is_instance_current_users?(prototype)
+    .dropdown.drop_menu_location
+      = button_tag class: 'btn btn-default dropdown-toggle', type: 'button', :'data-toggle' => 'dropdown', :'aria-expanded' => 'false' do
+        ACTION
+      %ul{class: 'dropdown-menu', role: 'menu'}
+        %li{role: 'presentation'}
+          = link_to 'edit', edit_prototype_path(prototype)
+        %li{role: 'presentation'}
+          = link_to 'delete', prototype_path(prototype), method: :delete
+  .thumbnail
+    = link_to prototype_path(prototype) do
+      = image_tag prototype.main_image.substance
+      .caption
+        %h3
+          = prototype.title
+    .proto-meta
+      .proto-user
+        by
+        = link_to "#{prototype.nickname}", user_path(prototype.user)
+      .proto-posted
+        = prototype.display_date
+    %ul.proto-tag-list.list-inline
+      %li
+        %a{href: "#", class: "btn btn-default"} iPad
+      %li
+        %a{href: "#", class: "btn btn-default"} wireframe
