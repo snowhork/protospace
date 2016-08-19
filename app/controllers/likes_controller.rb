@@ -2,6 +2,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @like.save
+    @prototype = Prototype.find(params[:prototype_id])
   end
 
   private
