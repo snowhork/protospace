@@ -1,7 +1,7 @@
-include UsersHelper
-
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: [:show, :edit, :update]
+  include UsersHelper
+
+  before_action :set_prototype, only: [:show, :edit, :update, :destroy]
 
   def index
     @prototypes = Prototype.all.includes(:user).page(params[:page])
@@ -42,7 +42,6 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    @prototype = Prototype.find(params[:id])
     if is_instance_current_users?(@prototype) && @prototype.destroy
       redirect_to root_path, success: 'Delete your prototype successfully'
     else
