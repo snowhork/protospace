@@ -1,0 +1,11 @@
+.col-md-8
+  .media
+    .media-left
+      = link_to user_path(comment.user) do
+        = image_tag comment, class: "media-object"
+    .media-body
+      %h4#top-aligned-media.media-heading
+        = comment.nickname
+        %a.anchorjs-link{href: "#top-aligned-media"}
+          %span.anchorjs-icon
+      = simple_format comment.text
