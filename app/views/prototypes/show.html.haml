@@ -13,13 +13,8 @@
             = link_to @prototype.nickname, user_path(@prototype.user)
             %span.degree
               = @prototype.works
-    .col-md-6.text-right
-      = form_tag prototype_likes_path(@prototype.id), method: :post, remote: true do
-        %button.btn.btn-default
-          = image_tag "icon_heart.svg"
-          Like
-          %span.num#likes_count
-            = @prototype.likes_count
+    .col-md-6.text-right#like_btn
+      = render partial: 'like', locals: {prototype: @prototype, like: @like}
   .row
     .col-md-9
       = image_tag @prototype.main_image.substance, class: 'img-responsive'

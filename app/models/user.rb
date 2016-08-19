@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :prototypes
+
+  def likes?(prototype)
+    Like.find_by(user_id: id, prototype_id: prototype.id).present?
+  end
 end
