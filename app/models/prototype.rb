@@ -1,5 +1,6 @@
 class Prototype < ActiveRecord::Base
   has_many :images, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   belongs_to :user, counter_cache: true
 
