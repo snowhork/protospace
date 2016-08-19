@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
     comment.save
+    @prototype = Prototype.find(params[:prototype_id])
   end
 
   private

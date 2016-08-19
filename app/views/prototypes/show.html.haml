@@ -40,12 +40,15 @@
   .row.proto-comments
     %h4.col-md-12
       Comments
-      %span.num (10)
-    = render @prototype.comments
+      %span.num#comments_count
+        = "(#{@prototype.comments_count})"
+    #comments
+      = render @prototype.comments
     - if user_signed_in?
-      = form_tag prototype_comments_path(@prototype.id), method: :post do
+      = form_tag prototype_comments_path(@prototype.id), method: :post , remote: true do
         .row
-          %h4 Write a comment
+          %h4.col-md-10
+            Write a comment
           .form-group.col-md-10
             = text_area :comment, :text, class: 'form-control', rows: '3', placeholder: 'Your comments'
           .form-group.col-md-2
