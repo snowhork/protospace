@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = comment.find(params[:id])
+    comment = Comment.find(params[:id])
     if is_instance_current_users?(comment)
       unless comment.destroy
         flash.now[:danger] = comment.errors.full_messages[0]
