@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+
   def create
-    if user_signed_in?
-      comment = Comment.new(comment_params)
-      unless comment.save
-        flash.now[:danger] = comment.errors.full_messages[0]
-      end
+    comment = Comment.new(comment_params)
+    unless comment.save
+      flash.now[:danger] = comment.errors.full_messages[0]
     end
     set_prototype
   end

@@ -1,10 +1,10 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+
   def create
-    if user_signed_in?
-      @like = Like.new(like_params)
-      unless @like.save
-        flash.now[:danger] = comment.errors.full_messages[0]
-      end
+    @like = Like.new(like_params)
+    unless @like.save
+      flash.now[:danger] = comment.errors.full_messages[0]
     end
     set_prototype
   end
