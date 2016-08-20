@@ -1,23 +1,6 @@
-- if user_signed_in?
-  - if user_likes_prototype?(current_user, prototype)
-    #destroy_like
-      = form_tag prototype_like_path(prototype.id, like.id), method: :delete, remote: true do
-        %button.btn.btn-default
-          = image_tag "icon_heart_red.svg"
-          Like
-          %span.num#likes_count
-            = prototype.likes_count
-  - else
-    #create_like
-      = form_tag prototype_likes_path(prototype.id), method: :post, remote: true do
-        %button.btn.btn-default
-          = image_tag "icon_heart.svg"
-          Like
-          %span.num#likes_count
-            = prototype.likes_count
-- else
+= like_form like, prototype do
   %button.btn.btn-default
-    = image_tag "icon_heart.svg"
+    = image_tag like_icon(prototype)
     Like
     %span.num#likes_count
       = prototype.likes_count
