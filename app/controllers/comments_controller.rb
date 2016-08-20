@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   def create
     if user_signed_in?
       comment = Comment.new(comment_params)
-      if comment.save
+      unless comment.save
+        flash.now[:danger] = comment.errors.full_messages[0]
       end
     end
     @prototype = Prototype.find(params[:prototype_id])
