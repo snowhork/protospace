@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.new(comment_params)
-    comment.save
+    if user_signed_in?
+      comment = Comment.new(comment_params)
+      if comment.save
+      end
+    end
     @prototype = Prototype.find(params[:prototype_id])
   end
 
