@@ -4,6 +4,5 @@ class Comment < ActiveRecord::Base
 
   delegate :nickname, to: :user
 
-  validates :text, length: { maximum: 500 }
-  validates :text, presence: true
+  validates :text, length: { maximum: 500 }, presence: true
 end
