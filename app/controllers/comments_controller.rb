@@ -6,7 +6,17 @@ class CommentsController < ApplicationController
         flash.now[:danger] = comment.errors.full_messages[0]
       end
     end
-    @prototype = Prototype.find(params[:prototype_id])
+    set_prototype
+  end
+
+  def destroy
+    comment = comment.find(params[:id])
+    if is_instance_current_users?(comment)
+      unless comment.destroy
+        flash.now[:danger] = comment.errors.full_messages[0]
+      end
+    end
+    set_prototype
   end
 
   private
@@ -15,5 +25,9 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text)
           .merge(prototype_id: params[:prototype_id],
                  user_id: current_user.id)
+  end
+
+  def set_prototype
+    @prototype = Prototype.find(params[:prototype_id])
   end
 end
