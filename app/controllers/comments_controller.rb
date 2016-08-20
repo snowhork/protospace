@@ -3,18 +3,14 @@ class CommentsController < ApplicationController
 
   def create
     comment = Comment.new(comment_params)
-    unless comment.save
-      flash.now[:danger] = comment.errors.full_messages[0]
-    end
+    flash.now[:danger] = comment.errors.full_messages[0] unless comment.save
     set_prototype
   end
 
   def destroy
     comment = Comment.find(params[:id])
     if is_instance_current_users?(comment)
-      unless comment.destroy
-        flash.now[:danger] = comment.errors.full_messages[0]
-      end
+      flash.now[:danger] = comment.errors.full_messages[0] unless comment.destroy
     end
     set_prototype
   end
