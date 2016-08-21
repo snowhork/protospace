@@ -14,7 +14,7 @@
             %span.degree
               = @prototype.works
     .col-md-6.text-right#like_btn
-      = render partial: 'like', locals: {prototype: @prototype, like: @like}
+      = render partial: 'like', locals: { prototype: @prototype, like: @like }
   .row
     .col-md-9
       = image_tag @prototype.main_image.substance, class: 'img-responsive'
