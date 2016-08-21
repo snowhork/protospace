@@ -50,7 +50,7 @@
           %h4.col-md-10
             Write a comment
           .form-group.col-md-10
-            = text_area :comment, :text, class: 'form-control', rows: '3', placeholder: 'Your comments', maxlength: '500'
+            = text_area :comment, :text, class: 'form-control', rows: '3', placeholder: 'Your comments', maxlength: '500', required: true
           .form-group.col-md-2
             = button_tag class:'btn btn-primary' do
               Comment
