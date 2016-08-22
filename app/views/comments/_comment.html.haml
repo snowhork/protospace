@@ -5,7 +5,7 @@
         = image_tag comment, class: "media-object"
     .media-body
       %h4#top-aligned-media.media-heading
-        = comment.nickname
+        = comment_nickname(comment.user)
         %a.anchorjs-link{href: "#top-aligned-media"}
           %span.anchorjs-icon
       = simple_format comment.text
