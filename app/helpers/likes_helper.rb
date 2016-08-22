@@ -3,12 +3,12 @@ module LikesHelper
     Like.find_by(user_id: user.id, prototype_id: prototype.id).present?
   end
 
-  def like_form(like, prototype)
+  def like_form(like, prototype, &block)
     if user_signed_in?
       if user_likes_prototype?(current_user, prototype)
-        form_tag prototype_like_path(prototype.id, like.id), method: :delete, remote: true
+        form_tag prototype_like_path(prototype.id, like.id), method: :delete, remote: true, &block
       else
-        form_tag prototype_likes_path(prototype.id), method: :post, remote: true
+        form_tag prototype_likes_path(prototype.id), method: :post, remote: true, &block
       end
     end
   end
