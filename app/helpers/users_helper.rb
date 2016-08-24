@@ -4,6 +4,6 @@ module UsersHelper
   end
 
   def user_nickname(user)
-    user.present? ? user.nickname : 'no name'
+    user.try(:name) || '名無し'
   end
 end
