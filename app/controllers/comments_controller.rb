@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
+  include UsersHelper
+
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
-    comment = Comment.new(comment_params)
-    flash.now[:danger] = comment.errors.full_messages[0] unless comment.save
+    if user_signed_in?
+      comment = Comment.new(comment_params)
+      flash.now[:danger] = comment.errors.full_messages[0] unless comment.save
+    end
     set_prototype
   end
 
