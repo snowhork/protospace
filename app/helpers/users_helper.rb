@@ -4,6 +4,6 @@ module UsersHelper
   end
 
   def user_nickname(user)
-    user.try(:name) || '名無し'
+    user.try(:nickname) || '名無し'
   end
 end
