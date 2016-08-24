@@ -4,11 +4,6 @@ module UsersHelper
   end
 
   def user_nickname(user)
-    if user.present?
-      user.nickname
-    else
-      "no name"
-    end
+    user.present? ? user.nickname : 'no name'
   end
-
 end
