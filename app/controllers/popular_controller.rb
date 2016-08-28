@@ -1,0 +1,2 @@
+class PopularController < ApplicationController
+end
