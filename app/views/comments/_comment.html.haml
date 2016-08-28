@@ -1,0 +1,14 @@
+.col-md-8
+  .media
+    .media-left
+      = link_to user_path(comment.user) do
+        = image_tag comment, class: "media-object"
+    .media-body
+      %h4#top-aligned-media.media-heading
+        = user_nickname(comment.user)
+        %a.anchorjs-link{href: "#top-aligned-media"}
+          %span.anchorjs-icon
+      = simple_format comment.text
+      - if is_instance_current_users?(comment)
+        = form_tag prototype_comment_path(comment.prototype, comment), method: :delete, remote: true do
+          = button_tag 'DELETE', class: 'btn btn-default dropdown-toggle'

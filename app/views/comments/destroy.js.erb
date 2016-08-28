@@ -1,0 +1,3 @@
+$("#comments").html('<%= j (render @prototype.comments) %>');
+$("#flash_message").html('<%= j (render "layouts/message") %>');
+$("#comments_count").html('<%= j ("(#{@prototype.comments_count.to_s})") %>');

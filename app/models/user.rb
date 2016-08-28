@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :prototypes, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :prototypes
 end

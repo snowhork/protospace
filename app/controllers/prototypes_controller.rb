@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
   include UsersHelper
+  include LikesHelper
 
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
 
@@ -24,6 +25,9 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    if user_signed_in? && user_likes_prototype?(current_user, @prototype)
+      @like = Like.find_by(user_id: current_user.id, prototype_id: params[:id])
+    end
   end
 
   def edit
