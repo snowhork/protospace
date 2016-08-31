@@ -13,6 +13,8 @@ class Prototype < ActiveRecord::Base
 
   paginates_per 8
 
+  acts_as_taggable
+
   def main_image
     images.select {|image| image.main_flag }[0]
   end
