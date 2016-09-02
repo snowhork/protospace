@@ -31,11 +31,11 @@
           %h4 Tag List
           .row
             .col-md-3
-              = text_field_tag 'tag_list[0]', "", placeholder: "Web Design"
+              = text_field_tag 'prototype[tag_list][]', "", placeholder: "Web Design"
             .col-md-3
-              = text_field_tag 'tag_list[1]', "", placeholder: "UI"
+              = text_field_tag 'prototype[tag_list][]', "", placeholder: "UI"
             .col-md-3
-              = text_field_tag 'tag_list[2]', "", placeholder: "Application"
+              = text_field_tag 'prototype[tag_list][]', "", placeholder: "Application"
       .row.text-center.proto-btn
         %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Publish
 

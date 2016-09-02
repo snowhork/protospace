@@ -15,6 +15,7 @@ class PrototypesController < ApplicationController
 
   def create
     add_main_flag
+    delete_empty_tag
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to root_path, success: 'Upload your prototype successfully'
@@ -60,6 +61,7 @@ class PrototypesController < ApplicationController
           .permit(:title,
                   :catch_copy,
                   :concept,
+                  tag_list: [],
                   images_attributes: [:substance, :main_flag, :id])
           .merge(user_id: current_user.id)
   end
@@ -76,5 +78,9 @@ class PrototypesController < ApplicationController
 
   def set_prototype
     @prototype = Prototype.find(params[:id])
+  end
+
+  def delete_empty_tag
+    params.require(:prototype)[:tag_list].delete_if { |v| v.empty?}
   end
 end
