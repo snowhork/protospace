@@ -38,6 +38,7 @@ class PrototypesController < ApplicationController
 
   def update
     add_main_flag
+    delete_empty_tag
     if is_instance_current_users?(@prototype) && @prototype.update(prototype_params)
       redirect_to root_path, success: 'Edit your prototype successfully'
     else
