@@ -8,6 +8,7 @@ class Prototype < ActiveRecord::Base
   delegate :nickname, :works, to: :user
 
   scope :popular, -> { order 'likes_count DESC'}
+  scope :newly, -> { order 'created_at DESC'}
 
   accepts_nested_attributes_for :images, reject_if: :all_blank
 
