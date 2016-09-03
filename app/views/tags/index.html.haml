@@ -1,6 +1,6 @@
 %h4 TAG LIST
 .container
   - @tags.each do |tag|
-    = link_to tags_path do
+    = link_to tag_path(tag) do
       %button{type: "button", class: "btn btn-default col-md-2"}
         = tag.name
