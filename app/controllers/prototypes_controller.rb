@@ -3,8 +3,8 @@ class PrototypesController < ApplicationController
   include LikesHelper
 
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
-  before_action :add_main_flag, only: [:create, :edit]
-  before_action :delete_emtpy_flag, only: [:create, :edit]
+  before_action :add_main_flag, only: [:create, :update]
+  before_action :delete_empty_tag, only: [:create, :update]
 
   def index
     @prototypes = Prototype.all.includes(:user).page(params[:page])
