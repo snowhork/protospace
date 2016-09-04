@@ -7,7 +7,7 @@ class PrototypesController < ApplicationController
   before_action :delete_empty_tag, only: [:create, :update]
 
   def index
-    @prototypes = Prototype.all.includes(:user).page(params[:page])
+    @prototypes = Prototype.includes(:user).page(params[:page]).newly
   end
 
   def new
