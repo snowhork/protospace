@@ -80,6 +80,6 @@ class PrototypesController < ApplicationController
   end
 
   def delete_empty_tag
-    params.require(:prototype)[:tag_list].delete_if { |v| v.empty?}
+    params.require(:prototype)[:tag_list].delete_if { |v| v.empty? }
   end
 end
