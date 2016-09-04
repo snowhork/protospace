@@ -6,12 +6,12 @@
   .container
     .row
       %ul.nav.nav-pills.col-lg-11
-        %li.active{role: "presentation"}
-          %a{href: "#"} Popular PROTO
-        %li{role: "presentation"}
-          %a{href: "#"} Newest PROTO
+        %li{role: "presentation", class: switch_proto_class('prototypes') }
+          = link_to 'Newest PROTO', prototypes_path
+        %li{role: "presentation", class: switch_proto_class('popular')}
+          = link_to 'Popular PROTO', popular_index_path
       = link_to tags_path do
-        %button{type: "button", class: "btn btn-default col-lg-1"} VIEW TAGS
+        %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
 
 .container.proto-list
   .row
