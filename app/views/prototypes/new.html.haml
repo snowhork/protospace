@@ -6,9 +6,9 @@
           = f.text_area :title, rows: "1", placeholder: "Title", class: 'proto-new-title'
       .row
         .col-md-12
-          .cover-image-upload
-            = f.fields_for :images, @prototype.images[0] do |images_form|
-              = images_form.file_field :substance
+          .cover-image-upload#js-main_image_display
+            = f.fields_for :images, @prototype.images[0]  do |images_form|
+              = images_form.file_field :substance, id: 'js-main_image_form'
         .col-md-12
           %ul.proto-sub-list.list-group
             %li.list-group-item.col-md-4
