@@ -12,13 +12,13 @@
         .col-md-12
           %ul.proto-sub-list.list-group
             %li.list-group-item.col-md-4
-              .image-upload
+              .image-upload#js-sub1_image_display
                 = f.fields_for :images, @prototype.images[1] do |images_form|
-                  = images_form.file_field :substance
+                  = images_form.file_field :substance, id: 'js-sub1_image_form'
             %li.list-group-item.col-md-4
-              .image-upload
+              .image-upload#js-sub2_image_display
                 = f.fields_for :images, @prototype.images[2] do |images_form|
-                  = images_form.file_field :substance
+                  = images_form.file_field :substance, id: 'js-sub2_image_form'
             %li.list-group-item.col-md-4
               .image-upload-plus
                 %span +
