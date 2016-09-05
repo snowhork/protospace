@@ -1,4 +1,6 @@
 class Prototype < ActiveRecord::Base
+  @@max_images_num = 4
+
   has_many :images, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -15,6 +17,10 @@ class Prototype < ActiveRecord::Base
   validate :prototype_must_have_main_image_to_upload_some_images, on: [:create, :update]
 
   paginates_per 8
+
+  def self.max_images_num
+    @@max_images_num
+  end
 
   def main_image
     images.select {|image| image.main_flag }[0]
