@@ -4,14 +4,13 @@ function fileChange(reader) {
 	var files = target.files;
 	var file = files[0]
 	reader.readAsDataURL(file);
-	console.log(reader)
     }
 }
 
 function fileLoad(reader, display_id) {
     return function(ev) {
 	console.log(display_id)
-	$(display_id).css('background-image', "url(" + reader.result + ")")
+	$(display_id).attr('src', reader.result)
     }
 }
 
@@ -38,6 +37,6 @@ $(window).on("load", function() {
 
     $('#js-image_upload_plus').on('click', function() {
 	$('#js-image_upload_plus').hide();
-	$('#js-sub3_image_display').show();
+	$('#js-image_upload_added').show();
     })
 });
