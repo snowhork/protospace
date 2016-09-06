@@ -19,8 +19,10 @@ $(window).on("load", function() {
     $.each(image_names, function(index, elem) {
 	var image = document.getElementById('js-' + elem + '_image_form');
 	var reader = new FileReader();
-	image.addEventListener('change', fileChange(reader), false);
-	reader.addEventListener('load', fileLoad(reader, '#js-' + elem + '_image_display'), false);
+	if(image) {
+	    image.addEventListener('change', fileChange(reader), false);
+	    reader.addEventListener('load', fileLoad(reader, '#js-' + elem + '_image_display'), false);
+	}
     });
 
     $('#js-image_upload_plus').on('click', function() {
