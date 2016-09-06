@@ -3,6 +3,8 @@ class PrototypesController < ApplicationController
   include LikesHelper
 
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
+  before_action :add_main_flag, only: [:create, :update]
+  before_action :delete_empty_tag, only: [:create, :update]
 
   def index
     @prototypes = Prototype.includes(:user).page(params[:page]).newly
@@ -14,7 +16,6 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    add_main_flag
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to root_path, success: 'Upload your prototype successfully'
@@ -36,7 +37,6 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    add_main_flag
     if is_instance_current_users?(@prototype) && @prototype.update(prototype_params)
       redirect_to root_path, success: 'Edit your prototype successfully'
     else
@@ -60,6 +60,7 @@ class PrototypesController < ApplicationController
           .permit(:title,
                   :catch_copy,
                   :concept,
+                  tag_list: [],
                   images_attributes: [:substance, :main_flag, :id])
           .merge(user_id: current_user.id)
   end
@@ -76,5 +77,9 @@ class PrototypesController < ApplicationController
 
   def set_prototype
     @prototype = Prototype.find(params[:id])
+  end
+
+  def delete_empty_tag
+    params.require(:prototype)[:tag_list].delete_if { |v| v.empty? }
   end
 end

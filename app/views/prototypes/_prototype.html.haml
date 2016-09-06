@@ -21,7 +21,7 @@
       .proto-posted
         = prototype.display_date
     %ul.proto-tag-list.list-inline
-      %li
-        %a{href: "#", class: "btn btn-default"} iPad
-      %li
-        %a{href: "#", class: "btn btn-default"} wireframe
+      - prototype.tag_list.each do |tag_name|
+        %li
+          = link_to tag_name, tag_path(search_tag(tag_name)), class: 'btn btn-default'
+
