@@ -37,11 +37,11 @@
           %h4 Tag List
           .row
             .col-md-3
-              %input{type: "text", placeholder: "Web Design"}/
+              = text_field_tag 'prototype[tag_list][]', @prototype.tag_list[0]
             .col-md-3
-              %input{type: "text", placeholder: "UI"}/
+              = text_field_tag 'prototype[tag_list][]', @prototype.tag_list[1], placeholder: "UI"
             .col-md-3
-              %input{type: "text", placeholder: "Application"}/
+              = text_field_tag 'prototype[tag_list][]', @prototype.tag_list[2], placeholder: "Application"
       .row.text-center.proto-btn
         %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Publish
 

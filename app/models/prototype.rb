@@ -15,8 +15,11 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :images, reject_if: :all_blank
 
   validate :prototype_must_have_main_image_to_upload_some_images, on: [:create, :update]
+  validate :prototype_cant_have_tag_list_including_space, on: [:create, :update]
 
   paginates_per 8
+
+  acts_as_taggable
 
   def self.max_images_num
     @@max_images_num
@@ -42,6 +45,12 @@ class Prototype < ActiveRecord::Base
         return if image.main_flag
       end
       errors.add(:prototype, "must have main image to upload some images")
+    end
+  end
+
+  def prototype_cant_have_tag_list_including_space
+    tag_list.each do |tag|
+      errors.add(:prototype, "can't have tag list including space") if tag.match(/[,\s]/)
     end
   end
 end
