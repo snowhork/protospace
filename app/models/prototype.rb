@@ -7,7 +7,7 @@ class Prototype < ActiveRecord::Base
 
   belongs_to :user, counter_cache: true
 
-  delegate :nickname, :works, to: :user
+  delegate :nickname, :works, :avatar, to: :user
 
   scope :popular, -> { order 'likes_count DESC' }
   scope :newly, -> { order 'created_at DESC' }
