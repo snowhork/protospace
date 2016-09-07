@@ -1,4 +1,4 @@
-function fileChange(reader) {
+function prototype_fileChange(reader) {
     return function(ev) {
 	var target = ev.target;
 	var files = target.files;
@@ -7,7 +7,7 @@ function fileChange(reader) {
     }
 }
 
-function fileLoad(reader, display_id) {
+function prototype_fileLoad(reader, display_id) {
     return function(ev) {
 	$(display_id).attr('src', reader.result);
     }
@@ -15,13 +15,12 @@ function fileLoad(reader, display_id) {
 
 $(window).on("load", function() {
     var image_names = ['main', 'sub1', 'sub2', 'sub3'];
-
     $.each(image_names, function(index, elem) {
 	var image = document.getElementById('js-' + elem + '_image_form');
 	var reader = new FileReader();
 	if(image) {
-	    image.addEventListener('change', fileChange(reader), false);
-	    reader.addEventListener('load', fileLoad(reader, '#js-' + elem + '_image_display'), false);
+	    image.addEventListener('change', prototype_fileChange(reader), false);
+	    reader.addEventListener('load', prototype_fileLoad(reader, '#js-' + elem + '_image_display'), false);
 	}
     });
 
