@@ -9,7 +9,7 @@
             .user-name.col-md-10
               = f.label :nickname
               = f.text_field :nickname, autofocus: true, placeholder: 'Username'
-            .user-image.col-md-2{id: 'js-user_avatar_display'}
+            .user-image.col-md-2#js-user_avatar_display
               %button.btn.btn-primary Add image
               = f.file_field :avatar, id: 'js-user_avatar_form'
 
