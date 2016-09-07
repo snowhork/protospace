@@ -1,5 +1,5 @@
 class Prototype < ActiveRecord::Base
-  @@max_images_num = 4
+  Max_images_num = 4
 
   has_many :images, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -22,7 +22,7 @@ class Prototype < ActiveRecord::Base
   acts_as_taggable
 
   def self.max_images_num
-    @@max_images_num
+    Max_images_num
   end
 
   def main_image
