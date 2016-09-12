@@ -21,10 +21,6 @@ class Prototype < ActiveRecord::Base
 
   acts_as_taggable
 
-  def self.max_images_num
-    Max_images_num
-  end
-
   def main_image
     images.select {|image| image.main_flag }[0]
   end
