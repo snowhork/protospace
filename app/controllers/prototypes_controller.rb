@@ -12,7 +12,7 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
-    3.times { @prototype.images.build }
+    Prototype::Max_images_num.times { @prototype.images.build }
   end
 
   def create
@@ -32,7 +32,7 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    (3 - @prototype.images.length).times { @prototype.images.build }
+    (Prototype::Max_images_num - @prototype.images.length).times { @prototype.images.build }
     @main_image = @prototype.images[0]
   end
 

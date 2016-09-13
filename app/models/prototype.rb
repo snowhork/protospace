@@ -1,11 +1,13 @@
 class Prototype < ActiveRecord::Base
+  Max_images_num = 4
+
   has_many :images, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   belongs_to :user, counter_cache: true
 
-  delegate :nickname, :works, to: :user
+  delegate :nickname, :works, :avatar, to: :user
 
   scope :popular, -> { order 'likes_count DESC' }
   scope :newly, -> { order 'created_at DESC' }

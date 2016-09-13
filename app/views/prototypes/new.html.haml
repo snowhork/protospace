@@ -7,21 +7,29 @@
       .row
         .col-md-12
           .cover-image-upload
-            = f.fields_for :images, @prototype.images[0] do |images_form|
-              = images_form.file_field :substance
+            = f.fields_for :images, @prototype.images[0]  do |images_form|
+              = images_form.file_field :substance, id: 'js-main_image_form'
+              = image_tag '', id: 'js-main_image_display', class: 'main_preview'
         .col-md-12
           %ul.proto-sub-list.list-group
             %li.list-group-item.col-md-4
               .image-upload
                 = f.fields_for :images, @prototype.images[1] do |images_form|
-                  = images_form.file_field :substance
+                  = images_form.file_field :substance, id: 'js-sub1_image_form'
+                  = image_tag '', id: 'js-sub1_image_display', class: 'sub_preview'
             %li.list-group-item.col-md-4
               .image-upload
                 = f.fields_for :images, @prototype.images[2] do |images_form|
-                  = images_form.file_field :substance
+                  = images_form.file_field :substance, id: 'js-sub2_image_form'
+                  = image_tag '', id: 'js-sub2_image_display', class: 'sub_preview'
             %li.list-group-item.col-md-4
-              .image-upload-plus
+              .image-upload-plus#js-image_upload_plus
                 %span +
+              .image-upload#js-image_upload_added{style: "display: none"}
+                = f.fields_for :images, @prototype.images[3] do |images_form|
+                  = images_form.file_field :substance, id: 'js-sub3_image_form'
+                  = image_tag '', id: 'js-sub3_image_display', class: 'sub_preview'
+ 
       .row.proto-description
         .col-md-12
           = f.text_area :catch_copy, rows: "1", placeholder: "Catch Copy"
