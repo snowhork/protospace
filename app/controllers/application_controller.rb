@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :member, :profile, :works])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :member, :profile, :works, :avatar])
   end
 
   private

@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :prototypes
+
+  mount_uploader :avatar, AvatarUploader
 end
