@@ -37,8 +37,16 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', "~> 3.1.0"
   gem 'factory_girl_rails', "~> 4.4.1"
+  gem 'faker'
   gem 'erb2haml'
   gem 'pry-rails'
+end
+
+group :test do
+  gem "capybara"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "poltergeist"
 end
 
 group :development do
