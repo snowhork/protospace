@@ -7,12 +7,6 @@ CarrierWave.configure do |config|
     region: 'us-east-1'
   }
 
-  case Rails.env
-  when 'development'
-    config.fog_directory = 'snowhorktest'
-    config.asset_host = 'https://s3.amazonaws.com/snowhorktest'
-  when 'production'
-    config.fog_directory = 'snowhorktest'
-      config.asset_host = 'https://s3.amazonaws.com/snowhorktest'
-  end
+  config.fog_directory = 'snowhorktest'
+  config.asset_host = 'https://s3.amazonaws.com/snowhorktest'
 end
