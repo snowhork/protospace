@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :prototypes
 
   validates :nickname, presence: true
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
 
   mount_uploader :avatar, AvatarUploader
 end
