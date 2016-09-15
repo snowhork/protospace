@@ -14,6 +14,10 @@ class Prototype < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, reject_if: :all_blank
 
+  validates :title, presence: true
+  validates :catch_copy, presence: true
+  validates :concept, presence: true
+
   validate :prototype_must_have_main_image_to_upload_some_images, on: [:create, :update]
   validate :prototype_cant_have_tag_list_including_space, on: [:create, :update]
 
