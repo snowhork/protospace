@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :comment do
-    text 'tekusuto'
+    text { Faker::Lorem.sentence }
   end
 end
