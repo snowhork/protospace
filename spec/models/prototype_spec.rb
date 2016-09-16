@@ -46,7 +46,7 @@ RSpec.describe Prototype, :type => :model do
 
   describe '#display_date' do
     it 'returns dates in a specified format' do
-      prototype = build(:prototype)
+      prototype = build(:prototype, :jan_first)
       expect(prototype.display_date).to eq 'Jan 01'
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe Prototype, :type => :model do
       expect(prototype.main_image.main_flag).to be_truthy
     end
 
-    it 'sub_imagesreturn sub_images' do
+    it 'sub_images return sub_images' do
       expect(prototype.sub_images.map { |image| image.main_flag }).to all(be_falsey)
     end
   end
