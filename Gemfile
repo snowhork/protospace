@@ -40,6 +40,9 @@ group :development, :test do
   gem 'faker'
   gem 'erb2haml'
   gem 'pry-rails'
+  gem 'guard-rspec', require: false # guardでrspecを動かす
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'  # デスクトップ通知を行う
 end
 
 group :test do

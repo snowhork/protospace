@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :move_to_root, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     @prototypes = @user.prototypes.page(params[:page])
@@ -22,5 +25,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit([:email, :password, :member, :profile, :works, :avatar])
+  end
+
+  def move_to_root
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 end

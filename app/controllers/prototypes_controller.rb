@@ -3,6 +3,7 @@ class PrototypesController < ApplicationController
   include LikesHelper
 
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :add_main_flag, only: [:create, :update]
   before_action :delete_empty_tag, only: [:create, :update]
 
@@ -33,7 +34,7 @@ class PrototypesController < ApplicationController
 
   def edit
     (Prototype::Max_images_num - @prototype.images.length).times { @prototype.images.build }
-    @main_image = @prototype.images[0]
+    @main_image = @prototype.main_image
   end
 
   def update
