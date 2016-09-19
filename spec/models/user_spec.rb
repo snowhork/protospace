@@ -29,9 +29,9 @@ RSpec.describe User, :type => :model do
       end
 
       it 'is invalid without a password_confirmation although with a password' do
-        user = build(:user, password_confirmation: nil)
+        user = build(:user, password_confirmation: "")
         user.valid?
-        expect(user.errors[:password_confirmation]).to include("can't be blank")
+        expect(user.errors[:password_confirmation]).to include("doesn't match Password")
       end
 
       it 'is invalid with a duplicate email address' do
