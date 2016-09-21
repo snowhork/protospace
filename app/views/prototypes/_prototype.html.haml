@@ -10,7 +10,7 @@
           = link_to 'delete', prototype_path(prototype), method: :delete
   .thumbnail
     = link_to prototype_path(prototype) do
-      = image_tag prototype.main_image.substance
+      = image_tag prototype.main_image_display
       .caption
         %h3
           = prototype.title

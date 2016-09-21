@@ -29,6 +29,10 @@ class Prototype < ActiveRecord::Base
     images.select {|image| image.main_flag }[0]
   end
 
+  def main_image_display
+    main_image.try(:substance)
+  end
+
   def sub_images
     images.select {|image| !image.main_flag }
   end
